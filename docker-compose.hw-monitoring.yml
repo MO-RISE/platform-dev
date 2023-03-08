@@ -32,7 +32,7 @@ services:
       - MQTT_BROKER_HOST=localhost
       - MQTT_BROKER_PORT=1883
       # 0 singel device or device name
-      - MQTT_TOPIC_JSON_OUT=CROWSNEST/SEALOG-2/HW/0/JSON
+      - MQTT_TOPIC_JSON_OUT=CROWSNEST/SEALOG-4/HW/0/JSON
       # LOG_LEVEL: DEBUG, INFO, WARNING, ERROR & CRITICAL
       - LOG_LEVEL=WARNING
 
