@@ -1,29 +1,33 @@
 # Platform-DEV
 
-These is a collection of Crowsnest services for development and testing.  
+These is a collection of Crowsnest services for development and testing.
 
-## Get started 
+## Get started
 
-This guide is for setting up Crowsnest dev on Ubuntu. 
+This guide is for setting up Crowsnest dev on Ubuntu.
 
-1) Start container of a local MQTT broker
-`docker-compose -f docker-compose.base.yml up -d`
+1.  Start container of a local MQTT broker
+    `docker-compose -f docker-compose.base.yml up -d`
 
-    EMQX default login u:admin p:public
+        EMQX default login u:admin p:public
 
+2.  Start container of MQTT bridge to RISE cloud MQTT broker
 
-2) Start container of MQTT bridge to RISE cloud MQTT broker
-   1) Set wanted `MQTT_TOPIC` in `docker-compose.bridge.yml` multiple topics can be added separated by `,`Ex. TOPIC_one,TOPIC_two 
-   2) `MQTT_REMOTE_USERNAME={username} MQTT_REMOTE_PASSWORD={password} docker-compose -f docker-compose.bridge.yml up -d `
+    1. Set wanted `MQTT_TOPIC` in `docker-compose.bridge.yml` multiple topics can be added separated by `,`Ex. TOPIC_one,TOPIC_two
+    2. `MQTT_REMOTE_USERNAME={username} MQTT_REMOTE_PASSWORD={password} docker-compose -f docker-compose.bridge.yml up -d `
 
-3) Connect MQTT explorer app to local  
-   1) protocol: mqtt, host: localhost, port:1883 
-4) Connect MQTT explorer app to RISE clound
-   1) protocol: ws, host: crowsnest.mo.ri.se, port:443, basepath: mqtt, user & password, encryption(tls)=ON 
+3.  Connect MQTT explorer app to local
+    1. protocol: mqtt, host: localhost, port:1883
+4.  Connect MQTT explorer app to RISE clound
+    1. protocol: ws, host: crowsnest.mo.ri.se, port:443, basepath: mqtt, user & password, encryption(tls)=ON
 
-----------------------------------------------------
+## TODO
+
+- [ ] Upgrade to EMQX V5 (Issue with Auth configuration to allow all)
+
+---
+
 TO CLEAN
-
 
 The sensors are eventually interfaced to a [crowsnest](https://github.com/MO-RISE/crowsnest) data bus:
 
@@ -63,7 +67,7 @@ Seahorse-1:
 
 - LIDAR OS2 BOW: (Server) 10.10.42.1 <--> (Sensor) 10.10.42.2
 - RADAR: Ping address to Multicast (Kinda a )
-- GNSS (ANavS): (Server) enp68s0f1 10.10.30.1  <--> 10.10.30.2 (Multicast 239.192.0.3 60003)
+- GNSS (ANavS): (Server) enp68s0f1 10.10.30.1 <--> 10.10.30.2 (Multicast 239.192.0.3 60003)
 -
 - USB: "/dev/ttyUSB0" <-- WindObserver 65
 - USB ?: SDR
@@ -221,11 +225,10 @@ reinitialize
 
 ```
 
-## SOCAT 
+## SOCAT
 
 ```
 socat -u UDP4-RECV:60003,reuseaddr STDOUT
 ```
-
 
 239.192.0.3
